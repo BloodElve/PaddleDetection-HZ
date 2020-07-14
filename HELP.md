@@ -1,5 +1,6 @@
-#tools
-##train.py
+#Code Document
+##tools
+###train.py
 | 参数名 | 简写 | 默认值 | 作用 |
 | :-----| :---- | :---- | :---- |
 | --config | -c |  | configuration file to use |
@@ -14,9 +15,9 @@
 | --enable_ce |  | False | If set True, enable continuous evaluation job |
 | --is_profiler |  | 0 | The switch of profiler tools. (used for benchmark) |
 | --profiler_path |  | ./detection.profiler | The profiler output file path. (used for benchmark) |
-#ppdet
-##core
-###workspace.py
+##ppdet
+###core
+####workspace.py
 | 类 | 作用 |
 | :---- | :---- |
 | AttrDict(dict) | 简单封装字典 |
@@ -25,4 +26,10 @@
 | :---- | :---- | :---- | :---- |
 | merge_config(config, another_cfg=None) | *config 配置文件字典 *another_cfg 配置文件字典 | another_cfg，缺省时为全局变量global_config | 合并两配置文件字典 |
 | dict_merge(dct, merge_dct) | *dct 配置文件字典 *merge_dct 配置文件字典 | dct | merge_config真正用于合并配置文件字典的方法 |
-| load_config(file_path) | *file_path 配置文件绝对路径 | 全局变量global_config | _READER_用于加载基础read.yml配置文件 |
+| load_config(file_path) | *file_path 配置文件绝对路径 | 全局变量global_config | 加载配置文件，_READER_用于加载基础reader.yml配置文件,原配置文件内容覆盖reader.yml内容 |
+| create(cls_or_name, **kwargs) | *cls_or_name 
+###utils
+####check.py
+| 方法 | 参数 | 返回值 | 作用 |
+| :---- | :---- | :---- | :---- |
+| check_config(cfg) | *cfg 配置文件字典 | *cfg 配置文件字典 | *检查architecture,num_classes是否存在 *若无log_iter，设置为20 *TrainReader和EvalReader和TestReader中dataset.with_background一致 |
