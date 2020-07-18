@@ -24,12 +24,22 @@
 
 | 方法 | 参数 | 返回值 | 作用 |
 | :---- | :---- | :---- | :---- |
-| merge_config(config, another_cfg=None) | *config 配置文件字典 *another_cfg 配置文件字典 | another_cfg，缺省时为全局变量global_config | 合并两配置文件字典 |
-| dict_merge(dct, merge_dct) | *dct 配置文件字典 *merge_dct 配置文件字典 | dct | merge_config真正用于合并配置文件字典的方法 |
-| load_config(file_path) | *file_path 配置文件绝对路径 | 全局变量global_config | 加载配置文件，_READER_用于加载基础reader.yml配置文件,原配置文件内容覆盖reader.yml内容 |
-| create(cls_or_name, **kwargs) | *cls_or_name 
+| merge_config(config, another_cfg=None) | *config 配置文件字典 *another_cfg 配置文件字典 | *another_cfg 缺省时为全局变量global_config | 合并两配置文件字典 |
+| dict_merge(dct, merge_dct) | *dct 配置文件字典 *merge_dct 配置文件字典 | *dct | merge_config真正用于合并配置文件字典的方法 |
+| load_config(file_path) | *file_path 配置文件绝对路径 | *global_config 全局配置 | 加载配置文件，_READER_用于加载基础reader.yml配置文件,原配置文件内容覆盖reader.yml内容 |
+| create(cls_or_name, **kwargs) | *cls_or_name 类名 | *cls(**kwargs) 根据类名创建的实例| 根据类名创建实例 |
+| register(cls) | *cls 类 | *cls | 帮助神经网络相关类注册入global_config（装饰器此处用法为扩充类功能） |
+####config
+#####schema.py
+| 类 | 作用 |
+| :---- | :---- |
+| SchemaDict(dict) | 用于封装神经网络配置 |
+
+| 方法 | 参数 | 返回值 | 作用 |
+| :---- | :---- | :---- | :---- |
+| extract_schema(cls) | *cls 类 | *schema 神经网络配置文件字典 | 根据类将神经网络配置注册入global_config |
 ###utils
 ####check.py
 | 方法 | 参数 | 返回值 | 作用 |
 | :---- | :---- | :---- | :---- |
-| check_config(cfg) | *cfg 配置文件字典 | *cfg 配置文件字典 | *检查architecture,num_classes是否存在 *若无log_iter，设置为20 *TrainReader和EvalReader和TestReader中dataset.with_background一致 |
+| check_config(cfg) | *cfg 配置文件字典 | *cfg | *检查architecture,num_classes是否存在 *若无log_iter，设置为20 *TrainReader和EvalReader和TestReader中dataset.with_background一致 |
